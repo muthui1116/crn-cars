@@ -11,6 +11,7 @@ export interface CartState {
 }
 
 export type CartAction =
+  | { type: "HYDRATE"; payload: CartItem[] }
   | { type: "ADD_ITEM"; payload: Omit<CartItem, "quantity"> }
   | { type: "REMOVE_ITEM"; payload: { id: number } }
   | { type: "UPDATE_QUANTITY"; payload: { id: number; quantity: number } }

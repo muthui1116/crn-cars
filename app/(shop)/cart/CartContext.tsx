@@ -12,6 +12,9 @@ function sanitizeQuantity(value: number) {
 
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
+    case "HYDRATE":
+      return { items: action.payload };
+
     case "ADD_ITEM": {
       const existing = state.items.find((i) => i.id === action.payload.id);
 
@@ -51,16 +54,18 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(cartReducer, initialState, () => {
-    if (typeof window === "undefined") return initialState;
+  const [state, dispatch] = useReducer(cartReducer, initialState);
 
+  useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : initialState;
+      if (saved) {
+        dispatch({ type: "HYDRATE", payload: JSON.parse(saved) });
+      }
     } catch {
-      return initialState;
+      // Ignore invalid or unavailable local cart data.
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
