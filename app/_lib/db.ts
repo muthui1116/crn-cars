@@ -19,12 +19,7 @@ if (!Number.isInteger(dbPort) || dbPort <= 0) {
 const db =
   globalForDb._pgPool ??
   new pg.Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: dbPort,
-    // connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
   });
 
 globalForDb._pgPool = db;
