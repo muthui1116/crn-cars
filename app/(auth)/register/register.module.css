@@ -1,0 +1,25 @@
+.main {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #0f172a; /* was text-slate-100, now dark text for a white bg */
+
+  display: flex;
+  align-items: center;   /* centers RegisterForm vertically */
+  justify-content: center; /* centers RegisterForm horizontally */
+
+  padding: 2.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .main {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

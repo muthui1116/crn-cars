@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CRN Commerce
 
-## Getting Started
+CRN Commerce is a Next.js storefront with authentication, cart flow, checkout, M-Pesa payment initiation, and PostgreSQL-backed product management.
 
-First, run the development server:
+## What this app includes
+
+- Credentials and Google sign-in via NextAuth
+- Protected cart and checkout routes
+- PostgreSQL-backed user, product, order, and order-item storage
+- Product CRUD and image processing with Sharp
+- M-Pesa STK push payment flow and callback handling
+- Cart persistence and checkout validation in the client and server layers
+
+## Local setup
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Copy environment variables into a local `.env` file. Required values include:
+   - `NEXTAUTH_SECRET`
+   - `GOOGLE_CLIENT_ID`
+   - `GOOGLE_CLIENT_SECRET`
+   - `DB_USER`
+   - `DB_HOST`
+   - `DB_NAME`
+   - `DB_PASSWORD`
+   - `DB_PORT`
+   - `MPESA_CONSUMER_KEY`
+   - `MPESA_CONSUMER_SECRET`
+   - `MPESA_SHORTCODE`
+   - `MPESA_PASSKEY`
+   - `MPESA_CALLBACK_URL`
+3. Start the app:
+   ```bash
+   npm run dev
+   ```
+4. Open `http://localhost:3000`.
+
+## Important production constraints
+
+- `NEXTAUTH_SECRET` must be set in every environment.
+- Google auth requires valid OAuth credentials and a matching redirect URI.
+- M-Pesa payment requires a valid callback URL that is publicly reachable during testing.
+- Checkout and order flows depend on PostgreSQL tables for `users`, `products`, `orders`, and `order_items`.
+- Route protection assumes a valid session user id is available in auth callbacks.
+
+## Common commands
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is structured for a small commerce workflow rather than a generic starter app. The server-side actions and routes are designed to be explicit, validation-forward, and easier to debug during onboarding and maintenance.

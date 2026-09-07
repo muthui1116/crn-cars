@@ -1,0 +1,114 @@
+/* Outer header bar: light grey so it reads distinct from a pure-white page,
+   without the stark contrast of the old dark slate-950 bar */
+.header {
+  border-bottom: 1px solid #e5e7eb; /* slate-200 */
+  background: #f8fafc; /* slate-50 — subtle grey, close enough to white to feel cohesive */
+  padding: 1rem 1.5rem;
+}
+
+/* Grid centers the row within a max width and lets logo / actions
+   sit at the two ends without needing extra wrapper math */
+.inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  max-width: 72rem; /* ~6xl */
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #0f172a; /* slate-900 */
+  text-decoration: none;
+}
+
+/* Flexbox row for the action buttons, right-aligned */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.ordersLink {
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1; /* slate-300, matches signInLink */
+  background: #ffffff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b; /* slate-800 */
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.ordersLink:hover {
+  border-color: #94a3b8; /* slate-400 */
+  background: #f1f5f9; /* slate-100 */
+}
+
+.userBadge {
+  display: none;
+  border-radius: 9999px;
+  background: #e5e7eb; /* slate-200 */
+  padding: 0.5rem 0.9rem;
+  font-size: 0.875rem;
+  color: #334155; /* slate-700 */
+}
+
+@media (min-width: 640px) {
+  .userBadge {
+    display: inline-block;
+  }
+}
+
+.logoutButton {
+  border: none;
+  border-radius: 9999px;
+  background: #f43f5e; /* rose-500 */
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.logoutButton:hover {
+  background: #fb7185; /* rose-400 */
+}
+
+.signInLink {
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1; /* slate-300 */
+  background: #ffffff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b; /* slate-800 */
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.signInLink:hover {
+  border-color: #94a3b8; /* slate-400 */
+  background: #f1f5f9; /* slate-100 */
+}
+
+.registerLink {
+  border-radius: 9999px;
+  border: none;
+  background: #0ea5e9; /* sky-500 */
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.registerLink:hover {
+  background: #38bdf8; /* sky-400 */
+}
