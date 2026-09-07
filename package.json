@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "allowScripts": {
+    "bcrypt": true,
+    "unrs-resolver": true
+  },
   "dependencies": {
     "@types/nodemailer": "^8.0.1",
     "bcrypt": "^6.0.0",
